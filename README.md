@@ -34,27 +34,25 @@
 ## Pages : Url Alias Api
 
 * domainName
-* domainName/[leaf-od]
+* domainName/[leaf-id]
 * domainName/about
 
-## domainName/[leaf-od]
+## Pages : domainName
 
-### 要素
+首頁，先介紹這是幹嘛的，然後引導使用者去
 
-1. fixed topbar
-1. parent leaf
-1. self leaf
-1. sibling leaves
-1. children leaves
-1. newLeaf : form
+* 熱門排行榜
+* 
 
-### Fixed topbar
+## Pages : domainName/[leaf-id]
 
-需含有
+### 要素們
 
-* Breadcrumbs ： 方便使用者知道階層
-* Treee Icon ：回首頁
-* self Leaf 斷章取意：擷取直到第一個/n為止
+1. fixed topbar	：回首頁用
+1. Breadcrumbs 	：顯示自己的祖先們
+1. self leaf	：自己，顯示全部內文
+1. children leaves	：根據屏幕寬度變化顯示層次
+1. newLeaf : form	：回應
 
 ## Backend Database Leaf 
 
@@ -65,3 +63,5 @@ content 	| string	| 內文
 age			| number	| 壽命（天
 views		| number	| 瀏覽次數
 clicks		| nubmer	| 點擊次數
+r18			| boolean	| 是否成人內容
+action		| number	| 類別：一般、修改分級、稼接、投票

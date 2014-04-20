@@ -1,10 +1,20 @@
 ﻿<?php 
-$page=paseUrl();
-function paseUrl(){
-	$result="";
-	if(array_key_exists("id",$_GET))$result=$_GET["id"];
-	return $result;
+require_once 'Treee.php';
+class Page{
+	public $breadcrumb=array();
+	public $treeMain=null;
+	public $children=array();
+	public function paseUrl(){
+		$result="";
+		if(array_key_exists("id",$_GET))$result=$_GET["id"];
+		return $result;
+	}
+	// public $foo="";
 }
+$p=new Page();
+$page=$p->paseUrl();
+$id=$p->paseUrl();
+$p->treeMain=new Treee($id);
 ?>
 <!DOCTYPE html>
 <html lang='zh-TW' class="han-la">
@@ -35,23 +45,101 @@ function paseUrl(){
 <!-- 國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國 -->
 <!-- 國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國 -->
 <!-- 國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國國 -->
-
+<a id="top"></a>
 <?php 
 switch($page):
 case"":?>
-    <div class="container">
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
-
-    </div> <!-- /container -->
+<div class="jumbotron">
+	<div class="container">
+		<h1>Treee 行前說明</h1>
+		<p>安安你好，這是一個非會員制的自由討論版</p>
+		<p>
+		  <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">巨大的按鈕</a>
+		</p>
+	</div>
+</div> <!-- /container -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<h2>您最近瀏覽</h2>
+			<ul class="media-list childrenList">
+			  <a id="childPrefab" href="#" class="list-group-item media level0 child leaf">
+				<div class="pull-left" href="#">
+				  <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="...">
+				</div>
+				<span class="badge">14</span>
+				<article class="media-body">
+					Cras justo odio<br>
+					savabab<br>
+					savabab<br>
+					savabab<br>
+				</article>
+			  </a>
+			  <a href="#" class="list-group-item level1">
+				<span class="badge">4</span>
+					Dapibus ac facilisis in
+				</a>
+			  <a href="#" class="list-group-item level1"><span class="badge">4</span>Morbi leo risus</a>
+			  <a href="#" class="list-group-item level2"><span class="badge">4</span>Porta ac consectetur ac</a>
+			  <a href="#" class="list-group-item"><span class="badge">4</span>Vestibulum at eros</a>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<h2>今日熱門</h2>
+			<ul class="media-list childrenList">
+			  <a id="childPrefab" href="#" class="list-group-item media level0 child leaf">
+				<div class="pull-left" href="#">
+				  <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="...">
+				</div>
+				<span class="badge">14</span>
+				<article class="media-body">
+					Cras justo odio<br>
+					savabab<br>
+					savabab<br>
+					savabab<br>
+				</article>
+			  </a>
+			</ul>
+		</div>
+	</div>
+	<a href="#top" type="button" class="btn btn-primary btn-lg btn-block">回到最上</a>
+	<hr />
+	<div class="row">
+		<div class="col-md-4">
+			<h2>背景故事概念</h2>
+			<ul>
+				<li>在這裡，發佈新的文章叫做「種樹」
+				<li>「樹」可以種在任意一棵樹、或枝芽上，成為他的「枝芽」
+				<li>若一棵樹擁有越多枝芽，就會越強壯越不易凋零
+				<li>相反的，枝芽稀疏的樹，會逐漸的枯萎
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<h2>白話文的本站核心特色</h2>
+			<h3>非會員制</h3>
+			<p>本站所有功能皆不需註冊會員，也不鼓勵使用者記名種樹</p>
+			<h3>無階層架構</h3>
+			<p>不區分主題、留言、推文等等「階層」；可以對所有留言做回應，也可以對回應的回應做回應</p>
+			<h3>壽命這一回事</h3>
+			<p>所有的「樹」都有壽命，時間到了自動被系統刪除。也就是越熱門、擁有越多枝芽的「樹」，壽命越長；反之，冷門、洗版、討論價值不高的樹們，會自動被系統拔除</p>
+			<h3>發文限制</h3>
+			<p>同 ip 一天僅可種限制數量的樹，這是為了避免洗版與希望重視每次的發言。如果你 ip 真的很多想洗版，那就，給你，洗吧。
+		</dl>
+			<dl class="dl-horizontal">
+	   </div>
+		<div class="col-md-4">
+		  <h2>一些規定</h2>
+		  <ol>
+			<li>雖然是匿名發言，但請注意並不是絕對隱匿與安全的，發言仍需注意自身安全，以免被人肉</li>
+			<li>討論成人話題必須設定為「限制級」，若發現分級錯誤的樹，也請幫助修改。<a href="#">修改辦法</a></li>
+		  </ol>
+		  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		</div>
+	</div>
+	
+	
+	<a href="#top" type="button" class="btn btn-primary btn-lg btn-block">回到最上</a>
+</div> <!-- /container -->
 <?php
 	break;
 default:
@@ -67,59 +155,123 @@ default:
 	<div class="container">
 		<article class="panel panel-default">
 		  <div class="panel-body">
-			<div class="media">
-			  <a class="pull-left" href="#">
-				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAYAAACuwEE+AAACgUlEQVR4nO3YsW7iWhRA0fn/T3FB4yKFizRINBQUtCncUPILfpV5UUJGs0fJTMysYknAjXwi7s4F58f1el3gV/34278A2yIYEsGQCIZEMCSCIREMiWBIBEMiGBLBkAiGRDAkgiERDIlgSARDIhgSwZAIhkQwJIIhEQyJYEgEQyIYEsGQCIZEMCSCIREMiWBIBEMiGBLBkAiGRDAkgiERDIlgSARDIhgSwZAIhkQwJIIhEQyJYEgEQyIYEsGQCIZEMCSCIREMiWBIBEMiGBLBkAiGRDAkgiERDMlDBPP8/LwMw3B3bbfbvVvb7/fLMAzLMAzLfr//9vO+k00HM8/zMk3TbTPerh+Px3dr6+adz+flfD6nTfzT876jTQczDMPy9PR0dwMvl8syjuO7tfW119cYx3GZ5/l2vXVtvfY8z58+72+/d/9kMNM03Tbh3sfA+hf9dsM+er6eEKfT6fb4eDx+2bwt2nQwH23CPM+3k6Ju4DiOy263W3a73YcnwWfO25qHDGaapuXl5eW3NvB0Ot1eOxwOXz5vax4ymPX5W9fr/99LXv/s65NkPVnWU+ZyuXzpvK15yGB+tnY4HD68a3m9tp409+5oPmveFv1zwVyv9/8v8rO7pPXj5jPnbdVDBMOfIxgSwZAIhkQwJIIhEQyJYEgEQyIYEsGQCIZEMCSCIREMiWBIBEMiGBLBkAiGRDAkgiERDIlgSARDIhgSwZAIhkQwJIIhEQyJYEgEQyIYEsGQCIZEMCSCIREMiWBIBEMiGBLBkAiGRDAkgiERDIlgSARDIhgSwZAIhkQwJIIhEQyJYEgEQyIYEsGQCIZEMCSCIREMiWBIBEMiGBLBkPwHMlRHGXwWLnIAAAAASUVORK5CYII=" alt="picture" />
-			  </a>
-			  <div class="media-body">
-			Basic panel example<br />
-			  屁啦你才最機掰好嗎<br />
-				Note: Siblings have at least one parent in common. Those<br />
-				   related only by a common mother are {uterine siblings};<br />
-				   those related only by a common father are {agnate<br />
-				   siblings} or {consanguine siblings} (a legal term). A<br />
-				   sibling having both parents in common is a<br />
-				   {sibling-german} or a {full brother} or {full sister}.<br />
-				   These modifying terms are more commonly used for the<br />
-				   more specific {uterine brother}, {uterine sister},<br />
-				   {agnate brother}, {brother-german}, etc.<br />
-				   [PJC]<br />
-			  </div>
-			</div>
+			  <img class="imgBlock img-responsive" src="http://tantek.com/presentations/2010/06/html5/hands-on/safarimeteretc.png" alt="picture" />
+<?php echo $p->treeMain->content;?>
 		  </div>
-		  <div class="panel-footer">
-			<button class="btn btn-primary btn-default" data-toggle="modal" data-target="#myModal">新文</button>
+		  <aside class="panel-footer">
 			<time>2014-02-22,19:30</time>
-			<div id="example "class="popover top">
-				<div class="arrow"></div>
-				<h3 class="popover-title">Popover top</h3>
-				<div class="popover-content">
-				  <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-				</div>
-			  </div>
-		  </div>
+				<span class="label label-default good"><span class="glyphicon glyphicon-thumbs-up"></span> 14</span>
+				<span class="label label-default bad"><span class="glyphicon glyphicon-thumbs-down"></span> 14</span>
+			<span class="label label-default">類別</span>
+			</aside>
 		</article>
-    </div>
-	<div class="container">
-		
-    </div>
-	<div class="container">
-		<ul class="media-list">
-		  <li class="media">
-			<a class="pull-left" href="#">
-			  <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="...">
+		<div class="" id="form">
+			<a data-toggle="collapse" data-parent="#form" href="#collapseOne" class="btn btn-default btn-block">
+				尚可種三棵
+				<progress value="3" max="5">some word</progress>
 			</a>
-			<div class="media-body">
-				我覺得薩爾最機掰
+			<div id="collapseOne" class="panel-collapse collapse">
+			  <div class="panel-body">
+				   <form class="form-horizontal+ " role="form">
+						<div class="form-group">
+							<label>發文要附圖：<input type="file" /></label>
+						</div>
+						<div class="form-group">
+							<button type="button" class="btn btn-default">(ﾟ∀ﾟ)/</button>
+							<button type="button" class="btn btn-default">(・_ゝ・)</button>
+							<button type="button" class="btn btn-default">(´_ゝ`)</button>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" placeholder="工威阿" ></textarea>
+						</div>
+						<div class="form-group ">
+							<button class="btn btn-primary">好！ <span class="glyphicon glyphicon-thumbs-up"></button>
+							<button class="btn btn-default">爛… <span class="glyphicon glyphicon-thumbs-down"></span></button>
+							<label>成人內容：<input type="checkbox" /></label>
+							<a href="#" ><span class="glyphicon glyphicon-question-sign"></span></a>
+							<div style="display:none">
+								<hr>
+								<button type="button" class="btn btn-warning">修改分級</button>
+								<button type="button" class="btn btn-warning">稼接</button>
+								<button type="button" class="btn btn-danger">檢舉</button>
+							</div>
+						</div>
+					</form>
+			  </div>
 			</div>
-		  </li>
-		</ul>
-	</div>
+		</div>
+    </div>
+	<hr>
 	<div class="container">
-		<ul class="media-list">
-		  <a href="#" class="list-group-item">
-			<span class="badge">14</span>
-			<article>
+		<div class="row">
+			<div class="col-md-6">
+				<h4 class="label label-default good">好！ <span class="glyphicon glyphicon-thumbs-up"></span></h4>
+				<ul class="media-list childrenList">
+				  <a id="childPrefab" href="#" class="list-group-item media level0 child leaf">
+					<div class="pull-left" href="#">
+					  <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="...">
+					</div>
+					<aside class="pull-right">
+						<span class="label label-default"><span class="glyphicon glyphicon-thumbs-up"></span> 14</span>
+						<span class="label label-default"><span class="glyphicon glyphicon-thumbs-down"></span> 14</span>
+						<span class="label label-default">類別</span>
+					</aside>
+					<article class="media-body">
+						Cras justo odio<br>
+						savabab<br>
+						savabab<br>
+						savabab<br>
+					</article>
+				  </a>
+				  <a href="#" class="list-group-item level1">
+					<span class="badge">4</span>
+						Dapibus ac facilisis in
+					</a>
+				  <a href="#" class="list-group-item level1"><span class="badge">4</span>Morbi leo risus</a>
+				  <a href="#" class="list-group-item level2"><span class="badge">4</span>Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item"><span class="badge">4</span>Vestibulum at eros</a>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<h4 class="label label-default bad">爛… <span class="glyphicon glyphicon-thumbs-down"></span></h4>
+				<ul class="media-list childrenList">
+				  <a id="childPrefab" href="#" class="list-group-item media level0 child leaf">
+					<div class="pull-left" href="#">
+					  <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="...">
+					</div>
+					<aside class="pull-right">
+						<span class="label label-info">14</span>
+						<span class="label label-default">類別</span>
+					</aside>
+					<article class="media-body">
+						Cras justo odio<br>
+						savabab<br>
+						savabab<br>
+						savabab<br>
+					</article>
+				  </a>
+				  <a href="#" class="list-group-item level1">
+					<span class="badge">4</span>
+						Dapibus ac facilisis in
+					</a>
+				  <a href="#" class="list-group-item level1"><span class="badge">4</span>Morbi leo risus</a>
+				  <a href="#" class="list-group-item level2"><span class="badge">4</span>Porta ac consectetur ac</a>
+				  <a href="#" class="list-group-item"><span class="badge">4</span>Vestibulum at eros</a>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<ul class="media-list childrenList">
+		  <a id="childPrefab" href="#" class="list-group-item media level0 child leaf">
+			<div class="pull-left" href="#">
+			  <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="...">
+			</div>
+			<aside class="pull-right">
+				<span class="label label-good"><span class="glyphicon glyphicon-thumbs-up"></span> 14</span>
+				<span class="label label-bad"><span class="glyphicon glyphicon-thumbs-down"></span> 14</span>
+				<span class="label label-default">類別</span>
+			</aside>
+			<article class="media-body">
 				Cras justo odio<br>
 				savabab<br>
 				savabab<br>
@@ -134,9 +286,7 @@ default:
 		  <a href="#" class="list-group-item level2"><span class="badge">4</span>Porta ac consectetur ac</a>
 		  <a href="#" class="list-group-item"><span class="badge">4</span>Vestibulum at eros</a>
 		</ul>
-    </div>
-	<div class="container">
-		<a href="#parent" type="button" class="btn btn-primary btn-lg btn-block">回到最上</a>
+		<a href="#top" type="button" class="btn btn-primary btn-lg btn-block">回到最上</a>
     </div>
 
 <?php endswitch;?>
@@ -144,7 +294,7 @@ default:
 
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="display:none">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -153,7 +303,7 @@ default:
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Tree</a>
+          <a class="navbar-brand" href="?">Tree</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -188,7 +338,7 @@ default:
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">新增回應</h4>
+        <h4 class="modal-title" id="myModalLabel">種！</h4>
       </div>
       <div class="modal-body">
        <form class="form-horizontal" role="form">		 
@@ -196,15 +346,20 @@ default:
 			<label for="inputPassword3" class="col-sm-2 control-label">回應</label>
 			<div class="col-sm-10">
 				<div class="btn-group ">
+				  <button type="button" class="btn btn-danger">修改分級</button>
+				  <button type="button" class="btn btn-warning">稼接</button>
+				</div>
+				<br>
+				<div class="btn-group ">
 				  <button type="button" class="btn btn-default">(ﾟ∀ﾟ)/</button>
 				  <button type="button" class="btn btn-default">(・_ゝ・)</button>
 				  <button type="button" class="btn btn-default">(´_ゝ`)</button>
 				  <button type="button" class="btn btn-default">Good !</button>
 				  <button type="button" class="btn btn-default">Suck</button>
 				  <button type="button" class="btn btn-default">Fuck</button>
-				  <button type="button" class="btn btn-primary">編輯</button>
 				</div>
-			  <textarea class="form-control" ></textarea>
+				<br>
+			  <textarea class="form-control" placeholder="哩麥種啥" ></textarea>
 			</div>
 		  </div>
 		</form>
